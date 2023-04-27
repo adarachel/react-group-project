@@ -1,48 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-import Rockets from './components/Rockets';
-import Missions from './components/Missions';
-import MyProfile from './components/MyProfile';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Nav from './components/Nav';
+import MyMissions from './pages/Missions';
+import Rockets from './pages/Rockets';
+import MyProfile from './pages/MyProfile';
+import './styling/Nav.css';
+import './styling/MyProfile.css';
+import './styling/Rockets.css';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <NavLink exact activeClassName="active" to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="active" to="/rockets">Rockets</NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="active" to="/missions">Missions</NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="active" to="/myprofile">My Profile</NavLink>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route exact path="/">
-            <h1>Home</h1>
-            <p>This is the home page.</p>
-          </Route>
-          <Route path="/rockets">
-            <Rockets />
-          </Route>
-          <Route path="/missions">
-            <Missions />
-          </Route>
-          <Route path="/myprofile">
-            <MyProfile />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+const App = () => (
+  <Router>
+    <Nav />
+    <Routes>
+      <Route path="/" element={<Rockets />} />
+      <Route path="/missions" element={<MyMissions />} />
+      <Route path="/myprofile" element={<MyProfile />} />
+    </Routes>
+  </Router>
+);
 
 export default App;
